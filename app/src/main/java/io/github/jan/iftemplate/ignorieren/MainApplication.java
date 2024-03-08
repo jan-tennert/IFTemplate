@@ -1,4 +1,4 @@
-package io.github.jan.iftemplate;
+package io.github.jan.iftemplate.ignorieren;
 
 import android.app.Application;
 

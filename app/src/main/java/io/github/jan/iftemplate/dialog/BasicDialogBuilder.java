@@ -22,11 +22,19 @@ public class BasicDialogBuilder extends DialogBuilder<Runnable> {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
             .setTitle(getTitle())
             .setMessage(message);
-        if (getPositiveButton() != null && getPositiveListener() != null) {
-            builder.setPositiveButton(getPositiveButton(), (dialog, which) -> getNegativeListener().run());
+        if (getPositiveButton() != null) {
+            builder.setPositiveButton(getPositiveButton(), (dialog, which) -> {
+                if(getNegativeListener() != null) {
+                    getNegativeListener().run();
+                }
+            });
         }
-        if (getNegativeButton() != null && getNegativeListener() != null) {
-            builder.setNegativeButton(getNegativeButton(), (dialog, which) -> getNegativeListener().run());
+        if (getNegativeButton() != null) {
+            builder.setNegativeButton(getNegativeButton(), (dialog, which) -> {
+                if(getNegativeListener() != null) {
+                    getNegativeListener().run();
+                }
+            });
         }
         if(getCancelListener() != null) {
             builder.setOnCancelListener(dialog -> getCancelListener().run());

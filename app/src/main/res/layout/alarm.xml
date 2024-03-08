@@ -8,10 +8,10 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/set_alarm"
+        android:id="@+id/stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="150dp"
-        android:layout_y="352dp"
-        android:text="Alarm setzen" />
+        android:layout_x="164dp"
+        android:layout_y="327dp"
+        android:text="Stop" />
 </android.widget.AbsoluteLayout>
