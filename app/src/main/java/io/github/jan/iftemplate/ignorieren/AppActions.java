@@ -119,6 +119,7 @@ public final class AppActions {
         Intent intent = new Intent(context, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.cancel(pendingIntent);
+        preferences.edit().remove("hour").remove("minute").apply();
     }
 
     public Time getAlarmTime() {
