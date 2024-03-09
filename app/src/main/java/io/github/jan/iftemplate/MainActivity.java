@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         screen = ScreenBinding.inflate(getLayoutInflater());
         setContentView(screen.getRoot());
         actions = new AppActions(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int imp = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(channelID, "Wecker", imp);
             channel.enableVibration(true);
@@ -54,10 +54,13 @@ public class MainActivity extends AppCompatActivity {
      * Hier wird euer Code ausgeführt
      */
     public void main() {
+        Time prevTime = actions.getAlarmTime();
+        screen.time.setText(actions.formatTime(prevTime));
         screen.setAlarm.setOnClickListener((v) -> {
             actions.timePicker("Wähle eine Zeit aus")
                 .setOnSuccessListener((hour, minute) -> {
                     actions.setAlarm(hour, minute);
+                    screen.time.setText(actions.formatTime(new Time(hour, minute)));
                     actions.alertDialog("Wecker", "Der Wecker wurde gestellt!").setPositiveButton("Ok").show();
                 })
                 .show();

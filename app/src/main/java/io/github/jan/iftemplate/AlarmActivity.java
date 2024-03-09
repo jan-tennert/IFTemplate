@@ -15,7 +15,7 @@ import io.github.jan.iftemplate.databinding.AlarmBinding;
 public class AlarmActivity extends AppCompatActivity {
 
     AlarmBinding screen;
-    Ringtone ringtone;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,11 +33,10 @@ public class AlarmActivity extends AppCompatActivity {
     // Hier wird euer Code ausgeführt, wenn der Wecker ausgelöst wird
     public void main() {
         //für ein eigenen sound, datei in den "raw" ordner und hier die id ändern
-        Uri path = Uri.parse("android.resource://io.github.jan.iftemplate/" + R.raw.homecoming);
-        ringtone = RingtoneManager.getRingtone(getApplicationContext(), path);
-        ringtone.play();
+        mediaPlayer = MediaPlayer.create(this, R.raw.homecoming);
+        mediaPlayer.start();
         screen.stop.setOnClickListener(v -> {
-            ringtone.stop();
+            mediaPlayer.stop();
             finish();
         });
     }

@@ -11,7 +11,17 @@
         android:id="@+id/set_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="150dp"
+        android:layout_x="127dp"
         android:layout_y="352dp"
         android:text="Alarm setzen" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="101dp"
+        android:layout_y="286dp"
+        android:text="Zeit: Nicht gesetzt"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 </android.widget.AbsoluteLayout>
