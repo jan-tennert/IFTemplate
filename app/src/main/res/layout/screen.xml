@@ -19,9 +19,9 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="101dp"
-        android:layout_y="286dp"
-        android:text="Zeit: Nicht gesetzt"
+        android:layout_x="160dp"
+        android:layout_y="293dp"
+        android:text="00:00"
         android:textAlignment="center"
         android:textSize="24sp" />
 </android.widget.AbsoluteLayout>
