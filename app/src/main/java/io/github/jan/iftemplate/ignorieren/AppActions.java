@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
@@ -21,7 +22,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import io.github.jan.iftemplate.Time;
 import io.github.jan.iftemplate.dialog.BasicDialogBuilder;
 import io.github.jan.iftemplate.dialog.DatePickerBuilder;
 import io.github.jan.iftemplate.dialog.TimePickerBuilder;
@@ -126,6 +126,10 @@ public final class AppActions {
         int hour = preferences.getInt("hour", 0);
         int minute = preferences.getInt("minute", 0);
         return new Time(hour, minute);
+    }
+
+    public MediaPlayer createMediaPlayer(int resId) {
+        return MediaPlayer.create(context, resId);
     }
 
 }
