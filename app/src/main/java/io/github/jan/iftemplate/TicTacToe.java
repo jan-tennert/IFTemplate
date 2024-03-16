@@ -39,9 +39,7 @@ public class TicTacToe {
     //.................
 
     public void playerWon(String player) {
-        actions.alertDialog("Gewonnen", "Spieler " + player + " hat gewonnen!")
-            .setPositiveButton("Ok")
-            .show();
+        //z.b. alert dialog zeigen
         reset();
     }
 
