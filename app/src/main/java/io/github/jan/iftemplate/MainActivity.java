@@ -8,13 +8,12 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import io.github.jan.iftemplate.databinding.ScreenBinding;
+import io.github.jan.iftemplate.ignorieren.PreMainActivity;
 
-public class MainActivity extends AppCompatActivity implements GameActionListener {
+public class MainActivity extends PreMainActivity implements GameActionListener {
 
     private TicTacToe ticTacToe;
     private TextView turnText;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements GameActionListene
         });
 
         //Hier wird ein neues TicTacToe-Objekt erstellt
-        ticTacToe = new TicTacToe(this);
+        ticTacToe = new TicTacToe(this, actions);
         updateTurnText();
     }
 
