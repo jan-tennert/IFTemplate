@@ -147,4 +147,13 @@ public final class AppActions {
         return gson.fromJson(json, listType);
     }
 
+    public void saveHomework(ArrayList<Homework> homework) {
+        writeFile(getDataFile("homework.json"), convertHomeworkToJson(homework));
+    }
+
+    public ArrayList<Homework> loadHomework() {
+        String json = readFile(getDataFile("homework.json"));
+        return convertJsonToHomework(json);
+    }
+
 }
