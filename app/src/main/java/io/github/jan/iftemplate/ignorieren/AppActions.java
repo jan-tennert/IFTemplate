@@ -9,11 +9,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.text.format.DateFormat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -38,9 +42,11 @@ public final class AppActions {
 
     private final Context context;
     private final ExecutorService executorService = Executors.newFixedThreadPool(4);
+    private final FusedLocationProviderClient locationProvider;
 
     public AppActions(Context context) {
         this.context = context;
+        locationProvider = LocationServices.getFusedLocationProviderClient(context);
     }
 
     public BasicDialogBuilder alertDialog(String title, String message) {
@@ -127,6 +133,43 @@ public final class AppActions {
 
     public MediaPlayer createMediaPlayer(int resId) {
         return MediaPlayer.create(context, resId);
+    }
+
+    @SuppressLint("MissingPermission")
+    public void getCurrentLocation(LocationListener listener) {
+        locationProvider.getLastLocation().addOnSuccessListener(listener::onLocation);
+    }
+
+    private void getWeatherData(WeatherListener listener, String urlSuffix) {
+        executorService.execute(() -> {
+            try {
+                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?appid=218ad975b4bccac9f81e354d48099d76&units=metric&lang=de" + urlSuffix);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.connect();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                Activity activity = (Activity) context;
+                WeatherData data = new WeatherData(new org.json.JSONObject(result.toString()));
+                activity.runOnUiThread(() -> {
+                    listener.onWeather(data);
+                });
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public void getWeatherData(Location location, WeatherListener listener) {
+        getWeatherData(listener, "&lat=" + location.getLatitude() + "&lon=" + location.getLongitude());
+    }
+
+    public void getWeatherData(String query, WeatherListener listener) {
+        getWeatherData(listener, "&q=" + query);
     }
 
 }
