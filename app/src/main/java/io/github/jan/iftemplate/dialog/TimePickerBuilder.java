@@ -6,6 +6,7 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
 import io.github.jan.iftemplate.MainActivity;
+import io.github.jan.iftemplate.ignorieren.Time;
 
 public class TimePickerBuilder extends DialogBuilder<TimePickerListener> {
 
@@ -24,7 +25,7 @@ public class TimePickerBuilder extends DialogBuilder<TimePickerListener> {
             .build();
         if(getPositiveButton() != null && getPositiveListener() != null) {
             picker.addOnPositiveButtonClickListener((w) -> {
-                getPositiveListener().onResult(picker.getHour(), picker.getMinute());
+                getPositiveListener().onResult(new Time(picker.getHour(), picker.getMinute()));
             });
         }
         if(getNegativeButton() != null && getNegativeListener() != null) {

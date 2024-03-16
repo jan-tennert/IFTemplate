@@ -7,21 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/set_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="127dp"
-        android:layout_y="352dp"
-        android:text="Alarm setzen" />
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_x="0dp"
+        android:layout_y="171dp" />
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="160dp"
-        android:layout_y="293dp"
-        android:text="00:00"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+    <io.github.jan.iftemplate.ignorieren.HomeworkList
+        android:id="@+id/homeworkList"
+        android:layout_width="match_parent"
+        android:layout_height="553dp"
+        android:layout_x="0dp"
+        android:layout_y="177dp" >
+
+    </io.github.jan.iftemplate.ignorieren.HomeworkList>
+
 </android.widget.AbsoluteLayout>
