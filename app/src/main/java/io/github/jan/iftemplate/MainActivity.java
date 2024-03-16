@@ -84,25 +84,6 @@ public class MainActivity extends PreMainActivity implements GameActionListener 
     }
 
     @Override
-    public void showDialog(String title, String message) {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(R.string.ok, (dialog, which) -> {})
-                .show();
-    }
-
-    @Override
-    public void vibrate(int duration, int strength) {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(duration, strength));
-        } else {
-            v.vibrate(duration);
-        }
-    }
-
-    @Override
     public void setField(int row, int column, String symbol) {
         fieldButtons[row][column].setText(symbol);
     }
