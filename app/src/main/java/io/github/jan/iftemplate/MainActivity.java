@@ -11,6 +11,7 @@ public class MainActivity extends PreMainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkLocationPermission();
+        //On Click Listener hinzufügen und dann mit actions.getWeatherData() die Wetterdaten abrufen
     }
 
 }
